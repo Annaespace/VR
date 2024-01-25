@@ -5,58 +5,84 @@
   <body>
     <a-scene>
       <a-assets>
-        <img id="mur" src="mur4.jpg">
-        <img id="sol" src="sol4.png">
-        <img id="ciel" src="ciel3.jpg">
-        <img id="drone0" src="drone0.png">
-        <img id="drone1" src="drone1.png">
+        <img id="mur" src="./Assets/mur4.jpg">
+        <img id="sol" src="./Assets/sol4.png">
+        <img id="ciel" src="./Assets/ciel3.jpg">
+        <img id="drone0" src="./Assets/drone0.png">
+        <img id="drone1" src="./Assets/drone1.png">
       </a-assets>
 
       <a-entity camera look-controls wasd-controls="acceleration:10" position="0 1.6 0"></a-entity>
 
+      <!-- DRONES -->
       <a-plane 
         material="src: #drone0"
-        position="-0.41094 1.03703 -2.93828"
+        position="-0.5 1 -3"
         side="double"
         transparent="true"
         width="1"
         height="0.5"
-        rotation="0 -29.999999999999996 0">
+        rotation="0 -30 0">
       </a-plane>
       <a-plane
         material="src: #drone0"
-        position="0.88119 1.04288 2.75188"
+        position="1 1 2.5"
         side="double"
         transparent="true"
         width="1"
         height="0.5"
-        rotation="0 -129.999999999999996 0">
+        rotation="0 -130 0">
       </a-plane>
       <a-plane
         material="src: #drone0"
-        position="-3.19815 1.04288 1.8251"
+        position="-3 1 2"
         side="double"
         transparent="true"
         width="1"
         height="0.5"
-        rotation="0 -59.99999999999999 0">
-      </a-plane>
-      <a-plane material="src: [object HTMLImageElement]" position="-2.94541 1.04288 -1.10343" side="double" transparent="true" width="1" height="0.5" geometry="" rotation="0 -119.99999999999999 0">
+        rotation="0 -60 0">
       </a-plane>
       <a-plane
         material="src: #drone1"
-        position="-1.24761 0.9677 -2.8271"
+        position="-3 1 -1.2"
         side="double"
         transparent="true"
         width="1"
         height="0.5"
-        rotation="0 29.999999999999996 0">
+        rotation="0 -120 0">
       </a-plane>
-      <a-plane material="src: #drone1" position="-2.96109 1.02759 0.85824" side="double" transparent="true" width="1" height="0.5" geometry="" rotation="0 59.99999999999999 0">
+      <a-plane
+        material="src: #drone1"
+        position="-1 1 -3"
+        side="double"
+        transparent="true"
+        width="1"
+        height="0.5"
+        rotation="0 30 0">
       </a-plane>
-      <a-plane material="src: drone1" position="-2.97221 1.04675 -0.33353" side="double" transparent="true" width="1" height="0.5" geometry="" rotation="0 -59.99999999999999 0">
+      <a-plane
+        material="src: #drone1"
+        position="-3 1 1"
+        side="double"
+        transparent="true"
+        width="1"
+        height="0.5"
+        rotation="0 60 0">
       </a-plane>
+      <a-plane
+        material="src: #drone0"
+        position="-3 1 -0.5"
+        side="double"
+        transparent="true"
+        width="1"
+        height="0.5"
+        rotation="0 -60 0">
+      </a-plane>
+
+      <!-- CIEL -->
       <a-sky material="src: #ciel"></a-sky>
+
+      <!-- MURS -->
       <a-box
         position="-1.875 1 -2"
         rotation="0 0 0"
@@ -1347,6 +1373,8 @@
         material="src: #mur; repeat: 1 1"
         >
       </a-box>
+
+      <!-- SOL ET PLAFOND -->
       <a-plane
         position="0 0 0"
         rotation="-90 0 0"
