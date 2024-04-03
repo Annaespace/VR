@@ -194,10 +194,12 @@
 
 
         <!-- BASE -->
-        <a-entity id="planete" position="0 0 0" scale="0.009 0.009 0.009" obj-model="obj: #terre; mtl: #terre1" animation="property: rotation; to: 0 360 0; dur: 9000; easing: linear; loop: true"></a-entity>
-        <a-sphere position="0 0 0" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 -360 0; dur: 9000; easing: linear; loop: true">
-            <a-entity position="0 1 3" rotation="0 270 0" scale="0.0008 0.0008 0.0008" obj-model="obj: #fusee; mtl: #fusee1"></a-entity>
-        </a-sphere>
+        <a-entity position="0 0 0" rotation="20 0 0">
+            <a-entity id="planete" position="0 0 0" scale="0.009 0.009 0.009" obj-model="obj: #terre; mtl: #terre1" animation="property: rotation; to: 0 360 0; dur: 9000; easing: linear; loop: true"></a-entity>
+            <a-sphere position="0 0 0" scale="0.5 0.5 0.5" animation="property: rotation; to: 0 -360 0; dur: 9000; easing: linear; loop: true">
+                <a-entity position="0 0 3" rotation="0 270 0" scale="0.0008 0.0008 0.0008" obj-model="obj: #fusee; mtl: #fusee1"></a-entity>
+            </a-sphere>
+        </a-entity>
 
         <!-- DEBUT ETUDIANT -->
         <a-sky id="image-360" radius="500" change-sky radius="10" src="#ciel"></a-sky>
