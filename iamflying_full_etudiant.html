@@ -35,6 +35,107 @@
         }
     });
 
+    // MODULE FLY
+    AFRAME.registerComponent('fly', {
+        schema: {
+            trace: { type: 'boolean', default: false },
+            vrmode: { type: 'boolean', default: false },
+            scalaire: { type: 'vec3', default: { x: 0.01, y: 0.01, z: 0.01 } }                
+        },              
+        init: function () {
+            this.scalaire = new THREE.Vector3(this.data.scalaire.x, this.data.scalaire.y, this.data.scalaire.z);    
+            var player = this.el;
+            // var trace = this.data.trace;
+
+            //el.setAttribute('fly', 'trace', false);
+            
+            var lefthand = document.getElementById('lefthand');
+            lefthand.addEventListener("ybuttondown", function (event) {
+                console.log("evt: ybuttondown");
+                if(info){ info = false; } else { info = true; }  
+            }); 
+            var lefthand = document.getElementById('lefthand');
+            lefthand.addEventListener("xbuttondown", function (event) {
+                console.log("evt: xbuttondown");
+                player.setAttribute('position', { x: 0, y: 0, z: 0 });
+            });                
+                
+            var navigateur = navigator.userAgent;
+            if (navigateur.includes("Quest")) {
+                vrmode = true;
+                console.log("vrmode = OCULUS");
+            } 
+            else {
+                vrmode = false;
+                console.log("vrmode = ORDI");
+                var player = this.el;
+
+                // DESKTOP MODE
+                window.addEventListener('keydown', function (event) {
+                    if (event.key === 'y') {
+                        console.log(player.id + " evt: ykeydown");
+                        var position = player.getAttribute('position');
+                        position.y += 0.1;
+                        player.setAttribute('position', position);
+                    }
+                    if (event.key === 'u') {
+                        console.log(player.id + " evt: ukeydown");
+                        var position = player.getAttribute('position');
+                        position.y -= 0.1;
+                        player.setAttribute('position', position);
+                    }
+                    if (event.key === 'o') {
+                        console.log(player.id + " evt: ukeydown");
+                        var position = player.getAttribute('position');
+                        position.y = 0;
+                        player.setAttribute('position', position);
+                    }                        
+                });
+
+
+            }
+        },
+        tick: function () {
+
+            if(vrmode) {
+                var position = this.el.getAttribute('position');
+                var delta_x = this.scalaire.x * (gauche.pos.x + droite.pos.x) / 2;
+                var delta_y = this.scalaire.y * ((gauche.pos.y + droite.pos.y) / 2 - 1);
+                var delta_z = this.scalaire.z * (gauche.pos.z + droite.pos.z) / 2;
+
+                position.x += delta_x;
+                position.y += delta_y;
+                position.z += delta_z;
+                this.el.setAttribute('position', position);
+
+                if (this.data.trace) {
+                    var trace = document.querySelector('#txtlog');
+                    var newvalue = 'entity = ' + this.el.id
+                        + '\n useragent = QUEST'
+                        + '\n gauche x_y_z = ' + gauche.pos.x.toFixed(2) + '_' + gauche.pos.y.toFixed(2) + '_' + gauche.pos.z.toFixed(2)
+                        + '\n delta x_y_z = ' + delta_x.toFixed(4) + '_' + delta_y.toFixed(4) + '_' + delta_z.toFixed(4)
+                        + '\n scalaire.y = ' + this.scalaire.y
+                        + '\n position x_y_z = ' + position.y.toFixed(2) + '_' + position.y.toFixed(2) + '_' + position.y.toFixed(2)
+                        + '\n player.pos x_y_z = ' + player.pos.x.toFixed(2) + '_' + player.pos.y.toFixed(2) + '_' + player.pos.z.toFixed(2);
+                    if (!info) newvalue = "";
+                    trace.setAttribute('value', newvalue);
+                }
+            } else
+            {
+                if (this.data.trace) {
+                    var trace = document.querySelector('#txtlog');
+                    var position = this.el.getAttribute('position');
+                    var newvalue = 'entity = ' + this.el.id
+                        + '\n useragent = ORDI'
+                        + '\n position x_y_z = ' + position.x.toFixed(2) + '_' + position.y.toFixed(2) + '_' + position.z.toFixed(2)
+                        + '\n player.pos x_y_z = ' + player.pos.x.toFixed(2) + '_' + player.pos.y.toFixed(2) + '_' + player.pos.z.toFixed(2);
+                    if (!info) newvalue = "";
+                    trace.setAttribute('value', newvalue);
+                }  
+            } 
+        },
+    });
+
 
     </script>
 
@@ -47,6 +148,10 @@
 
         <!-- ASSETS -->
         <a-assets>
+            <img id="sky0" src="./assets/puresky.jpg">
+            <img id="sky1" src="./assets/evening_road_01_puresky_4k.jpg">
+            <img id="sky2" src="./assets/sunflowers_puresky_4k.jpg">
+            <img id="sky3" src="./assets/table_mountain_2_puresky_4k.jpg">
             <a-asset-item id="terre" src="./assets/59-globe/Globe.obj"></a-asset-item>
             <a-asset-item id="terre1" src="./assets/59-globe/Globe.mtl"></a-asset-item>
             <a-asset-item id="fusee" src="./assets/rocket_v1_L1.123cd2c0a4e1-4c91-4403-b771-7c1ece7ac0c4/12217_rocket_v1_l1.obj"></a-asset-item>
