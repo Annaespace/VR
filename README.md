@@ -6,3 +6,4 @@
 * [labyrinthe_1_v2](./labyrinthe_1_v2.html)
 * [Mais quel bazar !](./alien_obj.html)
 * [Je vole !](./iamflying_full_etudiant.html)
+* [Je vole ! v2](./iamflyingv2.html)
