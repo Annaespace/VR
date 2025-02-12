@@ -8,4 +8,4 @@
 * [Je vole !](./iamflying_full_etudiant.html)
 * [Je vole ! v2](./iamflyingv2.html)
 * [Image 360](./skybox/skybox.html)
-* [Image 360](./Builds/index.html)
+* [Jeu](./Builds/index.html)
